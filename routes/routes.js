@@ -7,19 +7,18 @@ module.exports = function(app, passport){
 		res.redirect('/');
 	}
 
-	// Default Login Page without user logged in
+	// TODO get req object
 	app.get('/', function(req, res) {
-		res.render('../app/views/homepage');
-	});
-
-	app.get('/', isLoggedIn, function(req, res) {
-		res.render('../app/views/homepage', {
-			user: 'Akira'
-		});
+		res.render('../app/views/homepage', {user: req.user, isLoggedIn: req.isAuthenticated() });
+		console.log(req);
 	});
 
 	app.get('/money_tracker', function(req, res) {
-		res.render('../app/views/');
+		res.render('../app/views/money_tracker/money_tracker');
+	});
+
+	app.get('/money_tracker/add', function(req, res) {
+		res.render('../app/views/money_tracker/money_tracker_form');
 	});
 
 	//User Managment: login, signup, logout

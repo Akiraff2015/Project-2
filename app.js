@@ -13,7 +13,7 @@ var underscore = require('underscore');
 var app = express();
 
 //Connect with Mongo DB
-mongoose.connect('mongodb://localhost/music-dashboard');
+mongoose.connect('mongodb://localhost/money-tracker');
 
 //Setup socket.io
 var server = require('http').Server(app);

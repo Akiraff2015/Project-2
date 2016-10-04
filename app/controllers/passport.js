@@ -10,12 +10,10 @@ var facebookStrategy = require('passport-facebook').Strategy;
 // Load validator
 var validator = require('validator');
 
-/*------TODO: Load media tokens from a module
-/*var token = require('./private_tokens/media_tokens');
-*/
-
 //Load user model
 var User = require('../model/user');
+
+var tokens = require('../private_tokens/media_tokens');
 
 module.exports = function(passport) {
 	// Serialize user
@@ -105,10 +103,9 @@ module.exports = function(passport) {
 
 	// Twitter Strategy
 	passport.use(new twitterStrategy({
-		// TODO: move access tokens --> ./private_tokens/media_tokens.js
-		consumerKey: '1ptYwNSwB6oPShEq0h8WUY5ea',
-		consumerSecret: 'myoWD3WzJXe1bf2UGylvbmZGS6KcwtU4wTjMkiAqAMxqz1dgPq',
-		callbackURL: 'http://127.0.0.1:3000/auth/twitter/callback',
+		consumerKey: tokens.twitter.consumerKey,
+		consumerSecret: tokens.twitter.consumerSecret,
+		callbackURL: tokens.twitter.callbackUrl ,
 		passReqToCallback: true
 	},
 		function(req, token, tokenSecret, profile, done) {
@@ -131,7 +128,7 @@ module.exports = function(passport) {
 						newUser.twitter.img = profile.photos[0].value;
 
 						newUser.save(function(err) {
-							if (err) {
+							if (err) {o
 								console.log(err);
 							}
 							return done(null, newUser, req.flash('loginMessage', 'Registered an account successfully!'));
@@ -144,10 +141,9 @@ module.exports = function(passport) {
 
 	// Facebook Strategy
 	passport.use(new facebookStrategy({
-		// TODO: move access tokens --> ./private_tokens/media_tokens.js
-		clientID: '309651199408897',
-		clientSecret: 'b33c4ee020c534f00e02b0b43217805e',
-		callbackURL: 'http://localhost:3000/auth/facebook/callback',
+		clientID: tokens.facebook.clientID,
+		clientSecret: tokens.facebook.clientSecret,
+		callbackURL: tokens.facebook.callbackUrl,
 		passReqToCallback: true
 	},
 		function(req, accessToken, refreshToken, profile, done) {
