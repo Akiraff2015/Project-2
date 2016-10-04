@@ -1,0 +1,10 @@
+extends ../base/money-layout
+
+block main
+	p #{items}
+	p Receipt Name:  #{items.receiptName}
+	p Price Spent: #{items.priceSpent}
+	p Date: #{items.dateCreated}
+
+	each item in items
+		//- div #{item.receiptName}

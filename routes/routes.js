@@ -30,6 +30,13 @@ module.exports = function(app, passport){
 		res.render('../app/views/money_tracker/money_tracker_form');
 	});
 
+	app.get('/money_tracker/show', function(req, res) {
+		Item.find({}, function(err, item) {
+			console.log(item);
+			res.render('../app/views/money_tracker/money_tracker_show', {items: item});
+		});
+	});
+
 	app.post('/money_tracker/add', function(req, res) {
 		console.log(req.body);
 
