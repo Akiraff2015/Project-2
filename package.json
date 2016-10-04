@@ -1,0 +1,29 @@
+{
+  "name": "node-project",
+  "version": "1.0.0",
+  "description": "Organize your music library.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.5.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
+    "pug": "^2.0.0-beta6",
+    "socket.io": "^1.4.8",
+    "twitter": "^1.4.0",
+    "underscore": "^1.8.3",
+    "validator": "^5.4.0"
+  }
+}

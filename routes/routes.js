@@ -1,0 +1,80 @@
+module.exports = function(app, passport){ 
+	//Checks if the user is logged in
+	function isLoggedIn(req, res, next) {
+		if (req.isAuthenticated()) {
+			return next();
+		}
+		res.redirect('/');
+	}
+
+	// Default Login Page without user logged in
+	app.get('/', function(req, res) {
+		res.render('../app/views/homepage');
+	});
+
+	app.get('/', isLoggedIn, function(req, res) {
+		res.render('../app/views/homepage', {
+			user: 'Akira'
+		});
+	});
+
+	app.get('/money_tracker', function(req, res) {
+		res.render('../app/views/');
+	});
+
+	//User Managment: login, signup, logout
+	app.get('/login', function(req, res) {
+		res.render('../app/views/user/login', {});
+	});
+
+	app.get('/signup', function(req, res) {
+		res.render('../app/views/user/signup', {message: req.flash('loginMessage')});
+	});
+
+	app.get('/logout', function(req, res) {
+		req.logout();
+		res.redirect('/');
+	});
+
+	//PROTOTYPE
+	app.get('/success', function(req, res){ 
+		res.render('../app/views/user/success', {});
+	});
+
+	app.get('/secret', isLoggedIn, function(req, res) {
+		res.render('../app/views/user/secret', {message: req.flash('loginMessage')});
+	});
+
+	// LOCAL PASSPORT AUTHENTICATION
+	app.post('/signup', passport.authenticate('local-signup', {
+		successRedirect: '/success',
+		failureRedirect: '/',
+		failureFlash: true
+	}));
+
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect: '/secret',
+		failureRedirect: '/',
+		failureFlash: true
+	}));
+
+	// If user is registered with twitter account, authenticate
+	app.get('/auth/twitter', passport.authenticate('twitter'));
+
+	// Register with twitter account
+	app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+		successRedirect: '/secret',
+		failureRedirect: '/',
+		failureFlash: true
+	}));
+
+	// If user is registered with facebook account, authenticate
+	app.get('/auth/facebook', passport.authenticate('facebook'));
+
+	// Register with facebook account
+	app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+		successRedirect: '/secret',
+		failureRedirect: '/',
+		failureFlash: true
+	}));
+}

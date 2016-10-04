@@ -1,0 +1,37 @@
+extends base/public-layout
+
+block main
+	.container-fluid.form-style
+		.row
+			.col-md-4.offset-md-2
+				h4='Login today!'
+				form.font-cutive-mono(action='/login', method='post')
+					.form-inline
+						label.font-label-size Username
+						input.form-control(autocomplete='off' type='text', name='username' placeholder='Username')
+					.form-inline
+						label.font-label-size Password
+						input.form-control(type='password', name='password' placeholder='Password')
+
+					.btn-group
+						button.btn.btn-danger(type='submit') Login
+
+			.col-md-4
+				.row
+					h4='Register an account today!'
+				.row
+					.btn-group#signup-button
+						.btn.btn-primary
+							i.fa.fa-user(aria-hidden='true')
+						a.btn.btn-primary.font-cutive-mono#signup-text(href="/signup", value="Signup") Signup
+				.row
+					.btn-group#twitter-button
+						.btn.btn-info
+							i.fa.fa-twitter(aria-hidden='true')
+						a.btn.btn-info.font-cutive-mono#twitter-text(href="http://127.0.0.1:3000/auth/twitter/callback") Twitter
+				.row
+					.btn-group#facebook-button
+						.btn.btn-primary
+							i.fa.fa-facebook(aria-hidden='true')
+						a.btn.btn-primary.font-cutive-mono#facebook-text(href="http://localhost:3000/auth/facebook/callback") Facebook
+
