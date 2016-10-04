@@ -1,3 +1,6 @@
+//Load item model
+var Item = require('../app/model/item');
+
 module.exports = function(app, passport){ 
 	//Checks if the user is logged in
 	function isLoggedIn(req, res, next) {
@@ -9,8 +12,14 @@ module.exports = function(app, passport){
 
 	// TODO get req object
 	app.get('/', function(req, res) {
-		res.render('../app/views/homepage', {user: req.user, isLoggedIn: req.isAuthenticated() });
-		console.log(req);
+		// res.render('../app/views/homepage', {user: req.user, isLoggedIn: req.isAuthenticated() });
+		res.render('../app/views/homepage', {function() {
+			if (!req.isAuthenticated) {
+				console.log("hello");
+			}
+
+			console.log("hi");
+		}});
 	});
 
 	app.get('/money_tracker', function(req, res) {
@@ -19,6 +28,23 @@ module.exports = function(app, passport){
 
 	app.get('/money_tracker/add', function(req, res) {
 		res.render('../app/views/money_tracker/money_tracker_form');
+	});
+
+	app.post('/money_tracker/add', function(req, res) {
+		console.log(req.body);
+
+		var item = new Item();
+		item.priceSpent = req.body.totalPriceToSpend;
+		item.receiptName = req.body.receiptName;
+		item.paymentMethod = req.body.payment;
+		item.dateCreated = new Date();
+
+		item.save(function(err, item) {
+			if(err) {
+				res.json({error: err});
+			}
+			res.json('ok!');
+		});
 	});
 
 	//User Managment: login, signup, logout

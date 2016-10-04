@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 
 $(document).ready(function() {
 	var arrText = ['#signup', '#twitter', '#facebook'];
@@ -14,11 +14,10 @@ $(document).ready(function() {
 	});
 
 	// jQuery selector, attach submit
-	$("#newReceiptForm").on("submit", function(e) {
-		var getTotalPrice = $('#totalPriceToSpend').val();
-		var getPaymentMethod = $('input[name=payment]:checked').val();
-		e.preventDefault();
-
-		console.log(getTotalPrice, getPaymentMethod);
-	});
+	// $("#newReceiptForm").on("submit", function(e) {
+	// 	e.preventDefault();
+	// 	var getTotalPrice = $('#totalPriceToSpend').val();
+	// 	var getPaymentMethod = $('input[name=payment]:checked').val();
+	// 	console.log(getTotalPrice, getPaymentMethod);
+	// });
 });

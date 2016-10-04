@@ -1,12 +1,18 @@
 extends ../base/money-layout
 
 block main
+	//- TODO: CSS STYLE, remove br tags
 	h3 Add new Receipt
-	form#newReceiptForm(action="money_tracker/add", method="post")
-		label Total Price to spent: 
-		input#totalPriceToSpend(type="text", placeholder="Total Price")
+	form#newReceiptForm(method="post", action="/money_tracker/add")
+
+		label Receipt Name:
+		input(type="text", name="receiptName" placeholder="Receipt Name")
 		br
-		//- TODO: CSS STYLE, remove br tags
+
+		label Cost:
+		input(type="text", name="totalPriceToSpend" placeholder="Total Price")
+		br
+
 		label Type of Payment
 		br
 
