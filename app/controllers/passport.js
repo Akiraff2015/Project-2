@@ -13,7 +13,8 @@ var validator = require('validator');
 //Load user model
 var User = require('../model/user');
 
-var tokens = require('../private_tokens/media_tokens');
+// Load secret model
+var tokens = require('../../private_tokens/media_tokens');
 
 module.exports = function(passport) {
 	// Serialize user
@@ -103,9 +104,9 @@ module.exports = function(passport) {
 
 	// Twitter Strategy
 	passport.use(new twitterStrategy({
-		consumerKey: tokens.twitter.consumerKey,
-		consumerSecret: tokens.twitter.consumerSecret,
-		callbackURL: tokens.twitter.callbackUrl ,
+		consumerKey: tokens.secret.twitter.consumerKey,
+		consumerSecret: tokens.secret.twitter.consumerSecret,
+		callbackURL: tokens.secret.twitter.callbackUrl ,
 		passReqToCallback: true
 	},
 		function(req, token, tokenSecret, profile, done) {
@@ -141,9 +142,9 @@ module.exports = function(passport) {
 
 	// Facebook Strategy
 	passport.use(new facebookStrategy({
-		clientID: tokens.facebook.clientID,
-		clientSecret: tokens.facebook.clientSecret,
-		callbackURL: tokens.facebook.callbackUrl,
+		clientID: tokens.secret.facebook.clientId,
+		clientSecret: tokens.secret.facebook.clientSecret,
+		callbackURL: tokens.secret.facebook.callbackUrl,
 		passReqToCallback: true
 	},
 		function(req, accessToken, refreshToken, profile, done) {

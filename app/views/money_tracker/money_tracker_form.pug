@@ -1,0 +1,33 @@
+extends ../base/money-layout
+
+block main
+	h3 Add new Receipt
+	form#newReceiptForm(action="money_tracker/add", method="post")
+		label Total Price to spent: 
+		input#totalPriceToSpend(type="text", placeholder="Total Price")
+		br
+		//- TODO: CSS STYLE, remove br tags
+		label Type of Payment
+		br
+
+		| Cash
+		input(type="radio", name="payment", value="cash")
+		br
+
+		| Visa
+		input(type="radio", name="payment", value="visa")
+		br
+
+		| MasterCard
+		input(type="radio", name="payment", value="mastercard")
+		br
+
+		| American Express
+		input(type="radio", name="payment", value="americanexpress")
+		br
+
+		| Other
+		input(type="radio", name="payment", value="other")
+		br
+
+		input(type="submit", value="Add")

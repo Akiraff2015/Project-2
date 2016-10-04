@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+
 $(document).ready(function() {
 	var arrText = ['#signup', '#twitter', '#facebook'];
 
@@ -9,5 +11,14 @@ $(document).ready(function() {
 		$(elements + '-button').hover(function() {
 			$(elements + '-text').stop(true, true).fadeToggle('slow');
 		});
+	});
+
+	// jQuery selector, attach submit
+	$("#newReceiptForm").on("submit", function(e) {
+		var getTotalPrice = $('#totalPriceToSpend').val();
+		var getPaymentMethod = $('input[name=payment]:checked').val();
+		e.preventDefault();
+
+		console.log(getTotalPrice, getPaymentMethod);
 	});
 });
