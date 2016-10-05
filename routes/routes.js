@@ -26,30 +26,26 @@ module.exports = function(app, passport){
 	});
 
 	// MONEY TRACKER
-	/*
-	app.geyt('id', function(req, res, next, id) {
-		req.db.get('items').findOne({_id: id}, function(err, data) {
-			if (err) return next(err);
-			if (!data) return next(new Error('Data could not be accessed!'));
-			req.data = data;
-			next();
-		});
-	});
-*/
 	app.get('/money_tracker/item/:id', function(req, res) {
 		var id = req.params.id;
-
 		Item.findById(id, function(err, item){
-
 			if(err){
 				res.json({error: err});
 			}
-
 			res.json(item);
 		});
-
-
 		
+	});
+
+	app.delete('/money_tracker/remove/:id', function(req, res) {
+		var id = req.params.id;
+		Item.findByIdAndRemove(id, function(err, item) {
+			if (err) {
+				res.json({error: err});
+			}
+			res.json('You have been deleted :)'); 
+			res.redirect('/money_tracker/show');
+		});
 	});
 
 	app.get('/money_tracker', function(req, res) {
@@ -61,6 +57,20 @@ module.exports = function(app, passport){
 	});
 
 	app.get('/money_tracker/show', function(req, res) {
+		/*					TODO
+			> Find the oldest date in mongoose
+			> Calculate the oldest date with today's date
+			> Find the difference
+			> Use the difference and throw into object
+		*/
+		// Item.findOne({}, {}, {sort: {'created_at': 1}}, function(err, data) {
+		// 	 a = data.dateCreated;
+
+		// 	res.render('../app/views/money_tracker/money_tracker_show', {
+		// 		date: data.dateCreated
+		// 	});
+		// });
+
 		Item.find({}, function(err, items) {
 			var totalPrice = 0;
 			var totalPriceSpent = items.forEach(function(elements) {
@@ -82,6 +92,7 @@ module.exports = function(app, passport){
 			var item = new Item();
 			item.priceSpent = req.body.totalPriceToSpend;
 			item.receiptName = req.body.receiptName;
+			item.paymentMethod = req.body.payment;
 			item.dateCreated = new Date();
 			
 			item.save(function(err, item) {

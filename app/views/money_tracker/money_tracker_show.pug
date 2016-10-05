@@ -2,7 +2,15 @@ extends ../base/money-layout
 
 block main
 	.container
-		h2 Welcome back, Akiraff (HK$ #{roundTotalPrice}/HK$1000.00)
+		h2 Welcome back, Akiraff
+		.div 
+			| Budget: HK$1000.00
+		.div
+			| Spent Money: HK$#{roundTotalPrice}
+		.div
+			| Average money spent per day: HK$0.00
+		.div
+			| Day: 0
 		table.table.table-hover
 			thead
 				tr
@@ -51,32 +59,32 @@ block main
 								label
 									i.fa.fa-money.fa-lg(aria-hidden=true)
 									span.margin-both-5px Cash
-								input(type="radio", name="payment", value="cash", checked="")
+								input(type="radio", name="payment", value="Cash", checked="")
 							.col-md-4
 								label
 									i.fa.fa-cc-visa.fa-lg(aria-hidden=true)
 									span.margin-both-5px Visa
-								input(type="radio", name="payment", value="visa")
+								input(type="radio", name="payment", value="Visa")
 							.col-md-4
 								label
 									i.fa.fa-cc-mastercard.fa-lg(aria-hidden=true)
 									span.margin-both-5px MasterCard
-								input(type="radio", name="payment", value="mastercard")
+								input(type="radio", name="payment", value="MasterCard")
 						.row
 							.col-md-4
 								label
 									i.fa.fa-cc-amex.fa-lg(aria-hidden=true)
 									span.margin-both-5px American Express
-								input(type="radio", name="payment", value="americanexpress")
+								input(type="radio", name="payment", value="American Express")
 							.col-md-4
 								label
 									i.fa.fa-paypal.fa-lg(aria-hidden=true)
 									span.margin-both-5px Paypal
-								input(type="radio", name="payment", value="paypal")
+								input(type="radio", name="payment", value="Paypal")
 							.col-md-4
 								label
 									i.fa.fa-bitcoin.fa-lg(aria-hidden=true)
 									span.margin-both-5px Other
-								input(type="radio", name="payment", value="other")
+								input(type="radio", name="payment", value="Other")
 			.row
 				input.btn.btn-danger.form-control(type="submit", value="Add")
