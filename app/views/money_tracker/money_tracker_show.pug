@@ -1,10 +1,82 @@
 extends ../base/money-layout
 
 block main
-	p #{items}
-	p Receipt Name:  #{items.receiptName}
-	p Price Spent: #{items.priceSpent}
-	p Date: #{items.dateCreated}
+	.container
+		h2 Welcome back, Akiraff (HK$ #{roundTotalPrice}/HK$1000.00)
+		table.table.table-hover
+			thead
+				tr
+					th="Receipt Name"
+					th="Payment Method"
+					th="Price Spent"
+					th="Date"
+					th="Delete"
+			tbody
+			each item in items
+				tr(data-id= item._id) 
+					td #{item.receiptName}
+					td #{item.paymentMethod}
+					td HK$ #{item.priceSpent}
+					td #{item.dateCreated}
+					td
+						.btn.btn-danger
+							span.margin-both-5px Delete
+							i.fa.fa-times-circle-o(arian="true")
 
-	each item in items
-		//- div #{item.receiptName}
+		.btn.btn-danger.form-control#expand-quick-button Add
+		
+		form#expand-quick-form(method="post", action="/money_tracker/add")
+			.btn.btn-secondary#hide-form
+				| Hide Form
+			.row
+				.col-md-8
+					.form-group.form-margin-bottom
+						.col-md-3
+							label.pull-right Receipt Name
+						.col-md-9
+							input.form-control(type="text", name="receiptName", placeholder="Receipt Name")
+				.col-md-4
+					.form-group.form-margin-bottom
+						.col-md-2
+							label.pull-right Cost
+						.col-md-10
+							input.form-control(type="text", name="totalPriceToSpend" placeholder="Total Price")
+			.row
+				.form-group.form-margin-bottom
+					.col-md-2
+						label.pull-right Payment Method
+					.col-md-10
+						.row
+							.col-md-4
+								label
+									i.fa.fa-money.fa-lg(aria-hidden=true)
+									span.margin-both-5px Cash
+								input(type="radio", name="payment", value="cash", checked="")
+							.col-md-4
+								label
+									i.fa.fa-cc-visa.fa-lg(aria-hidden=true)
+									span.margin-both-5px Visa
+								input(type="radio", name="payment", value="visa")
+							.col-md-4
+								label
+									i.fa.fa-cc-mastercard.fa-lg(aria-hidden=true)
+									span.margin-both-5px MasterCard
+								input(type="radio", name="payment", value="mastercard")
+						.row
+							.col-md-4
+								label
+									i.fa.fa-cc-amex.fa-lg(aria-hidden=true)
+									span.margin-both-5px American Express
+								input(type="radio", name="payment", value="americanexpress")
+							.col-md-4
+								label
+									i.fa.fa-paypal.fa-lg(aria-hidden=true)
+									span.margin-both-5px Paypal
+								input(type="radio", name="payment", value="paypal")
+							.col-md-4
+								label
+									i.fa.fa-bitcoin.fa-lg(aria-hidden=true)
+									span.margin-both-5px Other
+								input(type="radio", name="payment", value="other")
+			.row
+				input.btn.btn-danger.form-control(type="submit", value="Add")

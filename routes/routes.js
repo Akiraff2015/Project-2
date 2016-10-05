@@ -1,6 +1,9 @@
 //Load item model
 var Item = require('../app/model/item');
 
+//Validator
+var validator = require('validator');
+
 module.exports = function(app, passport){ 
 	//Checks if the user is logged in
 	function isLoggedIn(req, res, next) {
@@ -22,6 +25,33 @@ module.exports = function(app, passport){
 		}});
 	});
 
+	// MONEY TRACKER
+	/*
+	app.geyt('id', function(req, res, next, id) {
+		req.db.get('items').findOne({_id: id}, function(err, data) {
+			if (err) return next(err);
+			if (!data) return next(new Error('Data could not be accessed!'));
+			req.data = data;
+			next();
+		});
+	});
+*/
+	app.get('/money_tracker/item/:id', function(req, res) {
+		var id = req.params.id;
+
+		Item.findById(id, function(err, item){
+
+			if(err){
+				res.json({error: err});
+			}
+
+			res.json(item);
+		});
+
+
+		
+	});
+
 	app.get('/money_tracker', function(req, res) {
 		res.render('../app/views/money_tracker/money_tracker');
 	});
@@ -31,27 +61,36 @@ module.exports = function(app, passport){
 	});
 
 	app.get('/money_tracker/show', function(req, res) {
-		Item.find({}, function(err, item) {
-			console.log(item);
-			res.render('../app/views/money_tracker/money_tracker_show', {items: item});
+		Item.find({}, function(err, items) {
+			var totalPrice = 0;
+			var totalPriceSpent = items.forEach(function(elements) {
+				totalPrice += Number(elements.priceSpent);
+			});
+
+			var roundTotalPrice = totalPrice.toFixed(2);
+
+			res.render('../app/views/money_tracker/money_tracker_show', {
+				items: items,
+				roundTotalPrice
+			});
 		});
 	});
 
 	app.post('/money_tracker/add', function(req, res) {
-		console.log(req.body);
-
-		var item = new Item();
-		item.priceSpent = req.body.totalPriceToSpend;
-		item.receiptName = req.body.receiptName;
-		item.paymentMethod = req.body.payment;
-		item.dateCreated = new Date();
-
-		item.save(function(err, item) {
-			if(err) {
-				res.json({error: err});
-			}
-			res.json('ok!');
-		});
+		//Checks if there is any data inside of text input
+		if (req.body.totalPriceToSpend.length > 0 && req.body.receiptName.length > 0) {
+			var item = new Item();
+			item.priceSpent = req.body.totalPriceToSpend;
+			item.receiptName = req.body.receiptName;
+			item.dateCreated = new Date();
+			
+			item.save(function(err, item) {
+				if(err) {
+					res.json({error: err});
+				}
+				res.json('ok!');
+			});
+		}
 	});
 
 	//User Managment: login, signup, logout

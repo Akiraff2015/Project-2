@@ -12,12 +12,35 @@ $(document).ready(function() {
 			$(elements + '-text').stop(true, true).fadeToggle('slow');
 		});
 	});
+	// Don't display form (default)
+	$('#expand-quick-form').css('display', 'none');
 
-	// jQuery selector, attach submit
-	// $("#newReceiptForm").on("submit", function(e) {
-	// 	e.preventDefault();
-	// 	var getTotalPrice = $('#totalPriceToSpend').val();
-	// 	var getPaymentMethod = $('input[name=payment]:checked').val();
-	// 	console.log(getTotalPrice, getPaymentMethod);
-	// });
+	// Expands form
+	$('#expand-quick-button').on('click', function() {
+		$('#expand-quick-form').slideDown(400);
+		$('#expand-quick-button').css('display', 'none');
+	});
+
+	// Hide form
+	$('#hide-form').on('click', function() {
+		$('#expand-quick-form').css('display', 'none');
+		$('#expand-quick-button').fadeIn('fast');
+	});
+
+	$('table').on('click', '.btn', function(e){
+		//Table Row --> 
+		var row = e.target;
+		row = $(row).parents('tr');
+		var id = $(row).data('id');
+
+		//send delete request
+		// $.ajax({
+		// 	url: 'http://localhost:3000/money_tracker/' + id,
+		// 	type: 'DELETE',
+		// 	success: "http://localhost:3000/sucess",
+		// 	error: "http://localhos:3000/"
+		// });
+	});
+
+
 });

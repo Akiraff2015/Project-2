@@ -27,9 +27,11 @@
 
 /*TODO: ADD BORDER*/
 .font-cutive-mono{font-family: 'Cutive Mono', monospace;}
-
 .font-passion-one{font-family: 'Passion One', cursive;}
 
 .font-label-size{font-size: 22px;}
 
 .font-label-size-160px {font-size: 40px;}
+
+.margin-both-5px {margin:0 5px;}
+.form-margin-bottom{margin: 10px 0;}
