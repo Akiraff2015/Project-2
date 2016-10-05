@@ -17,9 +17,9 @@ Most recent changes to **iKeep**
 
 ####Contact Information
 
-| Contact Information|                 |
-| ------------------:| :-------------- |
-| Name               | Akira Fukushima |
-| Twitter            | @akiraff        |
+| Contact Information|                                                    |
+| ------------------:| :------------------------------------------------- |
+| Name               | Akira Fukushima                                    |
+| Twitter            | [@akiraff](https://twitter.com/akiraff "@akiraff") |
 
 Feel free to contact me on twitter, if you got any questions regards iKeepTrack.
