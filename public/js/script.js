@@ -2,11 +2,9 @@
 
 $(document).ready(function() {
 	var arrText = ['#signup', '#twitter', '#facebook'];
-
 	arrText.forEach(function(elements) {
 		$(elements + '-text').css('display', 'none');
 	});
-
 	arrText.forEach(function(elements) {
 		$(elements + '-button').hover(function() {
 			$(elements + '-text').stop(true, true).fadeToggle('slow');
@@ -14,7 +12,7 @@ $(document).ready(function() {
 	});
 	// Don't display form (default)
 	$('#expand-quick-form').css('display', 'none');
-
+	
 	// Expands form
 	$('#expand-quick-button').on('click', function() {
 		$('#expand-quick-form').slideDown(400);
@@ -27,20 +25,45 @@ $(document).ready(function() {
 		$('#expand-quick-button').fadeIn('fast');
 	});
 
-	$('table').on('click', '.btn', function(e){
-		//Table Row --> 
+	// Listens to the target of the table row
+	$('table').on('click', '.button-delete', function(e){
+		//Target the table rows.
 		var row = e.target;
 		row = $(row).parents('tr');
 		var id = $(row).data('id');
 
-		//send delete request
-		// $.ajax({
-		// 	url: 'http://localhost:3000/money_tracker/' + id,
-		// 	type: 'DELETE',
-		// 	success: "http://localhost:3000/sucess",
-		// 	error: "http://localhos:3000/"
-		// });
+		//Deletes the row.
+		row.remove();
+
+		//Calls delete method in AJAX.
+		$.ajax({
+			url: 'http://localhost:3000/money_tracker/remove/' + id,
+			type: 'DELETE',
+		});
 	});
 
+	$('table').on('click', '.button-edit', function(e) {
+		var row = e.target;
+		row = $(row).parents('tr');
+		var id = $(row).data('id');
+
+		//TODO: Refactor the code
+		var tableClassAttributes = ['.receiptName', '.paymentMethod', '.priceSpent']
+		var receiptName = $(row).find('.receiptName').html();
+		var paymentMethod = $(row).find('.receiptName').html();
+		var priceSpent = $(row).find('.priceSpent').html();
+
+		row.html("<td><input type='text' placeholder=" + receiptName + "></td>");
+		row.html("<td><input type='text' placeholder=" + paymentMethod + "></td>");
+		row.html("<td><input type='text' placeholder=" + priceSpent + "></td>");
+
+		// tempArr.push($(this).find('td').text());
+		// console.log($(row).find('.receiptName').html());
+
+		// console.log(tempArr);
+
+		// console.log(row.text());
+		//row.html("test");
+	});
 
 });

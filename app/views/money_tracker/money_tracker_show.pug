@@ -1,16 +1,24 @@
 extends ../base/money-layout
 
 block main
-	.container
+	.container#money-tracker-show-page
 		h2 Welcome back, Akiraff
-		.div 
-			| Budget: HK$1000.00
-		.div
-			| Spent Money: HK$#{roundTotalPrice}
-		.div
-			| Average money spent per day: HK$0.00
-		.div
-			| Day: 0
+		.col-md-3
+			i.fa.fa-money(aria-hidden=true)
+			strong.margin-both-5px Budget:
+			| HK$1000.00
+		.col-md-3
+			i.fa.fa-arrow-down(aria-hidden=true)
+			strong.margin-both-5px Spent Money:
+			| HK$#{roundTotalPrice}
+		.col-md-3
+			i.fa.fa-line-chart(aria-hidden=true)
+			strong.margin-both-5px Avg. money/day:
+			| HK$0.00
+		.col-md-3
+			i.fa.fa-calendar(aria-hidden=true)
+			strong.margin-both-5px Day:
+			| 0
 		table.table.table-hover
 			thead
 				tr
@@ -18,18 +26,22 @@ block main
 					th="Payment Method"
 					th="Price Spent"
 					th="Date"
-					th="Delete"
+					th
 			tbody
 			each item in items
 				tr(data-id= item._id) 
-					td #{item.receiptName}
-					td #{item.paymentMethod}
-					td HK$ #{item.priceSpent}
-					td #{item.dateCreated}
+					td.receiptName #{item.receiptName}
+					td.paymentMethod #{item.paymentMethod}
+					td.priceSpent HK$ #{item.priceSpent}
+					td.dateCreated #{item.dateCreated}
 					td
-						.btn.btn-danger
-							span.margin-both-5px Delete
-							i.fa.fa-times-circle-o(arian="true")
+						.btn-group
+							.btn.btn-danger.button-delete
+								span.margin-both-5px Delete
+								i.fa.fa-trash-o(arian="true")
+							.btn.btn-primary.button-edit
+								span.margin-both-5px Edit
+								i.fa.fa-pencil(arian=true)
 
 		.btn.btn-danger.form-control#expand-quick-button Add
 		

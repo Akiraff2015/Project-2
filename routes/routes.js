@@ -37,15 +37,20 @@ module.exports = function(app, passport){
 		
 	});
 
+	//Deletes the item schema by id.
 	app.delete('/money_tracker/remove/:id', function(req, res) {
 		var id = req.params.id;
-		Item.findByIdAndRemove(id, function(err, item) {
-			if (err) {
-				res.json({error: err});
-			}
-			res.json('You have been deleted :)'); 
-			res.redirect('/money_tracker/show');
+		Item.findByIdAndRemove(id, function(err) {
+			if (err) throw err;
+
+			console.log("Have been deleted!");
 		});
+	});
+
+	// Updates the id
+	app.put('/money_tracker/update/:id', function(req, res) {
+		var id = req.params.id;
+		Item.findByIdAndUpdate(id,)
 	});
 
 	app.get('/money_tracker', function(req, res) {
