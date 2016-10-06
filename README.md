@@ -22,4 +22,4 @@ Most recent changes to **iKeep**
 | Name               | Akira Fukushima                                    |
 | Twitter            | [@akiraff](https://twitter.com/akiraff "@akiraff") |
 
-Feel free to contact me on Twitter, if you got any questions regards iKeepTrack.
+Feel free to contact me on Twitter, if you got any questions regards iKeep.
