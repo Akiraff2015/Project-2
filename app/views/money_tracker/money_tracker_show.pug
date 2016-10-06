@@ -4,19 +4,19 @@ block main
 	.container#money-tracker-show-page
 		h2 Welcome back, Akiraff
 		.col-md-3
-			i.fa.fa-money(aria-hidden=true)
+			i.fa.fa-money(aria-hidden='true')
 			strong.margin-both-5px Budget:
 			| HK$1000.00
 		.col-md-3
-			i.fa.fa-arrow-down(aria-hidden=true)
+			i.fa.fa-arrow-down(aria-hidden='true')
 			strong.margin-both-5px Spent Money:
 			| HK$#{roundTotalPrice}
 		.col-md-3
-			i.fa.fa-line-chart(aria-hidden=true)
+			i.fa.fa-line-chart(aria-hidden='true')
 			strong.margin-both-5px Avg. money/day:
 			| HK$0.00
 		.col-md-3
-			i.fa.fa-calendar(aria-hidden=true)
+			i.fa.fa-calendar(aria-hidden='true')
 			strong.margin-both-5px Day:
 			| 0
 		table.table.table-hover
@@ -34,14 +34,12 @@ block main
 					td.paymentMethod #{item.paymentMethod}
 					td.priceSpent HK$ #{item.priceSpent}
 					td.dateCreated #{item.dateCreated}
-					td
+					td.buttonGroup
 						.btn-group
 							.btn.btn-danger.button-delete
-								span.margin-both-5px Delete
 								i.fa.fa-trash-o(arian="true")
 							.btn.btn-primary.button-edit
-								span.margin-both-5px Edit
-								i.fa.fa-pencil(arian=true)
+								i.fa.fa-pencil(arian="true")
 
 		.btn.btn-danger.form-control#expand-quick-button Add
 		
@@ -69,33 +67,33 @@ block main
 						.row
 							.col-md-4
 								label
-									i.fa.fa-money.fa-lg(aria-hidden=true)
+									i.fa.fa-money.fa-lg(aria-hidden='true')
 									span.margin-both-5px Cash
 								input(type="radio", name="payment", value="Cash", checked="")
 							.col-md-4
 								label
-									i.fa.fa-cc-visa.fa-lg(aria-hidden=true)
+									i.fa.fa-cc-visa.fa-lg(aria-hidden='true')
 									span.margin-both-5px Visa
 								input(type="radio", name="payment", value="Visa")
 							.col-md-4
 								label
-									i.fa.fa-cc-mastercard.fa-lg(aria-hidden=true)
+									i.fa.fa-cc-mastercard.fa-lg(aria-hidden='true')
 									span.margin-both-5px MasterCard
 								input(type="radio", name="payment", value="MasterCard")
 						.row
 							.col-md-4
 								label
-									i.fa.fa-cc-amex.fa-lg(aria-hidden=true)
+									i.fa.fa-cc-amex.fa-lg(aria-hidden='true')
 									span.margin-both-5px American Express
 								input(type="radio", name="payment", value="American Express")
 							.col-md-4
 								label
-									i.fa.fa-paypal.fa-lg(aria-hidden=true)
+									i.fa.fa-paypal.fa-lg(aria-hidden='true')
 									span.margin-both-5px Paypal
 								input(type="radio", name="payment", value="Paypal")
 							.col-md-4
 								label
-									i.fa.fa-bitcoin.fa-lg(aria-hidden=true)
+									i.fa.fa-bitcoin.fa-lg(aria-hidden='true')
 									span.margin-both-5px Other
 								input(type="radio", name="payment", value="Other")
 			.row

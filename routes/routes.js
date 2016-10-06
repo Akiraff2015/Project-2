@@ -25,16 +25,17 @@ module.exports = function(app, passport){
 		}});
 	});
 
-	// MONEY TRACKER
-	app.get('/money_tracker/item/:id', function(req, res) {
+	// Updates the data
+	app.put('/money_tracker/update/:id', function(req, res) {
 		var id = req.params.id;
-		Item.findById(id, function(err, item){
-			if(err){
-				res.json({error: err});
-			}
-			res.json(item);
-		});
-		
+		Item.findByIdAndUpdate(id, {
+			receiptName: req.body.receiptName,
+			paymentMethod: req.body.paymentMethod,
+			priceSpent: req.body.priceSpent
+		}, function(err) {
+			if (err) throw err
+			console.log("Updated!");
+;		});
 	});
 
 	//Deletes the item schema by id.
@@ -42,15 +43,8 @@ module.exports = function(app, passport){
 		var id = req.params.id;
 		Item.findByIdAndRemove(id, function(err) {
 			if (err) throw err;
-
 			console.log("Have been deleted!");
 		});
-	});
-
-	// Updates the id
-	app.put('/money_tracker/update/:id', function(req, res) {
-		var id = req.params.id;
-		Item.findByIdAndUpdate(id,)
 	});
 
 	app.get('/money_tracker', function(req, res) {
@@ -62,6 +56,7 @@ module.exports = function(app, passport){
 	});
 
 	app.get('/money_tracker/show', function(req, res) {
+		console.log(req.body);
 		/*					TODO
 			> Find the oldest date in mongoose
 			> Calculate the oldest date with today's date
@@ -92,6 +87,7 @@ module.exports = function(app, passport){
 	});
 
 	app.post('/money_tracker/add', function(req, res) {
+		console.log(req.body);
 		//Checks if there is any data inside of text input
 		if (req.body.totalPriceToSpend.length > 0 && req.body.receiptName.length > 0) {
 			var item = new Item();
@@ -104,7 +100,7 @@ module.exports = function(app, passport){
 				if(err) {
 					res.json({error: err});
 				}
-				res.json('ok!');
+				res.redirect('/money_tracker/show');
 			});
 		}
 	});
