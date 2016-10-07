@@ -14,11 +14,11 @@ block main
 		.col-md-3
 			i.fa.fa-line-chart(aria-hidden='true')
 			strong.margin-both-5px Avg. money/day:
-			| HK$0.00
+			| HK$ #{roundAverageMoney}
 		.col-md-3
 			i.fa.fa-calendar(aria-hidden='true')
 			strong.margin-both-5px Day:
-			| 0
+			| #{dayTimeDifference}
 		table.table.table-hover
 			thead
 				tr
@@ -33,7 +33,7 @@ block main
 					td.receiptName #{item.receiptName}
 					td.paymentMethod #{item.paymentMethod}
 					td.priceSpent HK$ #{item.priceSpent}
-					td.dateCreated #{item.dateCreated}
+					td.dateCreated #{item.formatDate}
 					td.buttonGroup
 						.btn-group
 							.btn.btn-danger.button-delete

@@ -1,4 +1,20 @@
 extends base/public-layout
 
 block main
-	//- img(class='img-responsive' src='/img/triangle.png')
+	.click-body.noselect
+		img(src="/img/track.jpg").background-image
+		.darker-background
+		.container-body
+			h1.homepage-header='iKeep'
+			.row
+				.col-md-4.text-center
+					p.font-size-30px="Keep Track "
+						i.fa.fa-calendar-check-o.fa-2x.margin-both-10px(aria-hidden="true")
+				.col-md-4.text-center
+					p.font-size-30px="Keep Organized"
+						i.fa.fa-check-square-o.fa-2x.margin-both-10px(aria-hidden="true")
+				.col-md-4.text-center
+					p.font-size-30px="Keep Economic"
+						i.fa.fa-line-chart.fa-2x.margin-both-10px(aria-hidden="true")
+			.row#centerTopHomepage
+				h1.homepage-header.font-size-40px#animationGlow="Click anywhere to get started!"

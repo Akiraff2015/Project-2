@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function(e) {
 	var arrText = ['#signup', '#twitter', '#facebook'];
 	arrText.forEach(function(elements) {
 		$(elements + '-text').css('display', 'none');
@@ -8,6 +8,17 @@ $(document).ready(function() {
 		$(elements + '-button').hover(function() {
 			$(elements + '-text').stop(true, true).fadeToggle('slow');
 		});
+	});
+
+	// Animation homepage
+	setInterval(function() {
+		$('#animationGlow').animate({opacity:'+=1'}, 1000);
+		$('#animationGlow').animate({opacity:'-=0.5'}, 1000);
+	}, 800);
+
+	//Click to redirect
+	$('.click-body').on('click' ,function() {
+		window.location.replace("http://localhost:3000/money_tracker/show");
 	});
 
 	// Don't display form (default)
@@ -35,7 +46,7 @@ $(document).ready(function() {
 		//Deletes the row.
 		row.remove();
 
-		//Calls delete method in AJAX.
+		//Calls DELETE method in AJAX request.
 		$.ajax({
 			url: 'http://localhost:3000/money_tracker/remove/' + id,
 			type: 'DELETE'
@@ -65,12 +76,24 @@ $(document).ready(function() {
 									'</div>' +
 								'</div>';
 
+		var selectProperty = '<select class="selectPayment">' +
+								'<option value="Cash">Cash</option>' +
+								'<option value="Visa">Visa</option>' +
+								'<option value="MasterCard">MasterCard</option>' +
+								'<option value="American Express">American Express</option>' +
+								'<option value="Paypal">Paypal</option>' +
+								'<option value="Other">Other</option>' +
+							'</select>';
+
 		row.html("<td><input class='getUpdateReceiptName' type='text' name='updateReceiptName' value='" + tableRowValues[0] + "'></td>" +
-				"<td><input class='getUpdatePaymentMethod'type='text' name='updatePaymentMethod' value='" + tableRowValues[1] + "'></td>" +
+				"<td>" + selectProperty + "</td>" +
 				"<td><input class='getUpdatePriceSpent' type='text' name='updatePriceSpent' value='" + tableRowValues[2].split(" ").splice(1, 1)[0] + "'></td>" +
 				"<td class='getUpdateDate'>" + tableRowValues[3] + "</td>" +
 				"<td>" + updateButtonGroup + "</td>"
 		);
+
+		// Sets the selected value from selection box
+		$('.selectPayment').val(tableRowValues[1]);
 	});
 
 	// Update button
@@ -81,10 +104,10 @@ $(document).ready(function() {
 
 		// Gets the values from the table
 		var getReceiptName = $('.getUpdateReceiptName').val();
-		var getPaymentMethod = $('.getUpdatePaymentMethod').val();
+		var getPaymentMethod = $('.selectPayment').val();
 		var getPriceSpent = $('.getUpdatePriceSpent').val();
-		// var getDate = $('.getUpdateDate').text();
 
+		//Ajax PUT request. Gets an object of values, from user text input from table.
 		$.ajax({
 			url: 'http://localhost:3000/money_tracker/update/' + id,
 			type: 'PUT',
@@ -94,6 +117,24 @@ $(document).ready(function() {
 				priceSpent: getPriceSpent,
 			}
 		});
+
+		//Last <td> contains data
+		var buttonGroup = '<div class="btn-group">' +
+								'<div class="btn btn-danger button-delete">' +
+									'<i class="fa fa-trash-o" arian="true"></i>' +
+								'</div>' +
+								'<div class="btn btn-primary button-edit">' +
+									'<i class="fa fa-pencil" arian="true"></i>' +
+								'</div>' +
+							'</div>';
+
+		// TODO: refactor code
+		row.html("<td class='receiptName'>" + getReceiptName + "</td>" +
+			"<td class='paymentMethod'>" + getPaymentMethod + "</td>" +
+			"<td class='priceSpent'>" + "HK$ " + getPriceSpent + "</td>" +
+			"<td class='dateCreated'>" + $(row).find('.getUpdateDate').text() + "</td>" +
+			"<td class='buttonGroup'>" + buttonGroup + "</td>"
+		);
 	});
 
 	// Cancel button
@@ -102,7 +143,15 @@ $(document).ready(function() {
 		row = $(row).parents('tr');
 		var id = $(row).data('id');
 
-		var cancelButtonGroup = '<div class="btn-group">' +
+		var getPaymentMethod = $('.selectPayment').val();
+
+		/* TODO
+		 * Add data attribute, to keep in track of old data.
+		 * If user does not make changes, than use old data
+		 * Else use new data, if user make changes.
+		*/
+
+		var buttonGroup = '<div class="btn-group">' +
 									'<div class="btn btn-danger button-delete">' +
 										'<i class="fa fa-trash-o" arian="true"></i>' +
 									'</div>' +
@@ -113,11 +162,10 @@ $(document).ready(function() {
 
 		// TODO: refactor code
 		row.html("<td class='receiptName'>" + $(row).find('.getUpdateReceiptName').val() + "</td>" +
-			"<td class='paymentMethod'>" + $(row).find('.getUpdatePaymentMethod').val() + "</td>" +
+			"<td class='paymentMethod'>" + getPaymentMethod + "</td>" +
 			"<td class='priceSpent'>" + "HK$ " + $(row).find('.getUpdatePriceSpent').val() + "</td>" +
 			"<td class='dateCreated'>" + $(row).find('.getUpdateDate').text() + "</td>" +
-			"<td class='buttonGroup'>" + cancelButtonGroup + "</td>"
-
+			"<td class='buttonGroup'>" + buttonGroup + "</td>"
 		);
 	});
 });

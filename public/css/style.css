@@ -1,37 +1,67 @@
-/*.form-style {
-	border: 2px solid grey;
-	width: 60%;
-	border-radius: 5px;
-}
-/*navigation bar*/
-	#public-navigation-bar, ul{
-		background-color:yellow;
-		width: 100%;
-		padding: 0;
-		margin: 0;
+/*Homepage Header*/
+	img.background-image {
+		min-height:100%;
+		min-width:1024px;
+		width:100%;
+		height:auto;
+		position:fixed;
+		top:0;
+		left:0;
 	}
 
-	#public-navigation-bar a {
-		color: black;
-		text-decoration: none;
+	.darker-background {
+		min-height:100%;
+		min-width:1024px;
+		width:100%;
+		height:auto;
+		position:absolute;
+		top:0;
+		left:0;
+		background:rgba(0, 0, 0, .7);
 	}
 
-	#public-navigation-bar li:not(:first-child) {
-		display: inline-block;
-		padding: 5px;
+	.container-body {
+		color: white;
+		position:absolute;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
 	}
-	#public-navigation-bar li:not(:first-child):hover {
-		background-color: white;
+
+	.homepage-header {
+		text-align: center;
+		font-size: 80px;
 	}
-/*End navigation bar*/
 
-/*TODO: ADD BORDER*/
-.font-cutive-mono{font-family: 'Cutive Mono', monospace;}
-.font-passion-one{font-family: 'Passion One', cursive;}
+	#centerTopHomepage {
+		margin-top: 10%;
+	}
 
-.font-label-size{font-size: 22px;}
+	.noselect {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
 
-.font-label-size-160px {font-size: 40px;}
+	.no-padding > [class*='col-'] {
+		padding-right:0;
+		padding-left:0;
+	}
+/*End of header*/
 
-.margin-both-5px {margin:0 5px;}
-.form-margin-bottom{margin: 10px 0;}
+/*Utilities*/
+	.font-cutive-mono{font-family: 'Cutive Mono', monospace;}
+	.font-passion-one{font-family: 'Passion One', cursive;}
+	.font-label-size{font-size: 22px;}
+	.font-size-30px{font-size: 30px;}
+	.font-size-40px{font-size:40px;}
+	.margin-both-5px {margin:0 5px;}
+	.margin-both-7px {margin: 0 6px;}
+	.margin-both-10px {margin: 0 10px;}
+	.form-margin-bottom{margin: 10px 0;}
+	.modal-body {max-height: 100vh;}
+/*End of utilities */
