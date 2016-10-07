@@ -66,17 +66,23 @@ module.exports = function(app, passport){
 	});
 
 	app.get('/money_tracker/show', function(req, res) {
-		console.log(moment().format('L'));
-		var differenceDate = 0;
+		// function findOldestDate(pass, callback) {
+		// 	Item.findOne({}, {}, {sort: {'dateCreated': 1}}, function(err, data) {
+		// 		if (err) throw err;
+		// 		else {
+		// 			callback(null, data.dateCreated);
+		// 		}
+		// 		// var oldestDate = data.dateCreated;
+		// 		// var todayDate = moment();
+		// 		// differenceDate = todayDate.diff(oldestDate, 'days') + 1;
+		// 	});
+		// }
 
-		//Find the oldest collection in database.
-		Item.findOne({}, {}, {sort: {'dateCreated': 1}}, function(err, data) {
-			var oldestDate = data.dateCreated;
-			var todayDate = moment();
-			differenceDate = todayDate.diff(oldestDate, 'days') + 1;
+		// var a = findOldestDate({}, function(err, date) {
+		// 	if (err) throw err;
+		// 	return date;
+		// });
 
-			console.log("hello: ", differenceDate);
-		});
 		/*					TODO
 			> Find the oldest date in mongoose
 			> Calculate the oldest date with today's date
@@ -93,12 +99,22 @@ module.exports = function(app, passport){
 
 		Item.find({}, function(err, items) {
 			var totalPrice = 0;
+			var totalPaymentMethod = [
+				['Cash', 1337],
+				['Visa', 0],
+				['MasterCard', 0],
+				['AmericanExpress', 0],
+				['Paypal', 0],
+				['Other', 0]
+			];
+			// console.log(items.paymentMethod[0].localeCompare(totalPaymentMethod[0][0]));
+			// console.log(totalPaymentMethod[0][1]);
 			var totalPriceSpent = items.forEach(function(elements) {
 				totalPrice += Number(elements.priceSpent);
 			});
 
 			var roundTotalPrice = totalPrice.toFixed(2);
-			var countDays = 3;
+			var countDays = 2;
 			var averageMoney = roundTotalPrice/countDays;
 
 			//round the number
