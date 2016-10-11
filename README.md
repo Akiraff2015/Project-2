@@ -10,6 +10,7 @@ Most recent changes to **iKeep**
 | :-------------- | :----------------- | :------------ |
 | 0.01-alpha      | Initial release    | 3 Oct 2016    |
 | 0.05-alpha      | Features working   | 5 Oct 2016    |
+| 0.06-alpha      | [Migrated to Meteor](https://github.com/Akiraff2015/Project-2-Meteor.js-) | 9 Oct 2016    |
 
 ####Stage Development
 - **Alpha Stage:** A lot of features in progress to be added soon.
