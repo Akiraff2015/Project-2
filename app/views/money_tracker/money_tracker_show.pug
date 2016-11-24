@@ -43,7 +43,7 @@ block main
 
 		.btn.btn-danger.form-control#expand-quick-button Add
 		
-		form#expand-quick-form(method="post", action="/money_tracker/add")
+		form#expand-quick-form
 			.btn.btn-secondary#hide-form
 				| Hide Form
 			.row
@@ -52,13 +52,13 @@ block main
 						.col-md-3
 							label.pull-right Receipt Name
 						.col-md-9
-							input.form-control(type="text", name="receiptName", placeholder="Receipt Name")
+							input#name.form-control(type="text", name="receiptName", placeholder="Receipt Name")
 				.col-md-4
 					.form-group.form-margin-bottom
 						.col-md-2
 							label.pull-right Cost
 						.col-md-10
-							input.form-control(type="text", name="totalPriceToSpend" placeholder="Total Price")
+							input#total.form-control(type="text", name="totalPriceToSpend" placeholder="Total Price")
 			.row
 				.form-group.form-margin-bottom
 					.col-md-2
@@ -97,4 +97,4 @@ block main
 									span.margin-both-5px Other
 								input(type="radio", name="payment", value="Other")
 			.row
-				input.btn.btn-danger.form-control(type="submit", value="Add")
+				input#item.btn.btn-danger.form-control(type="submit", value="Add")

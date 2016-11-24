@@ -90,7 +90,7 @@ $(document).ready(function(e) {
 				"<td><input class='getUpdatePriceSpent' type='text' name='updatePriceSpent' value='" + tableRowValues[2].split(" ").splice(1, 1)[0] + "'></td>" +
 				"<td class='getUpdateDate'>" + tableRowValues[3] + "</td>" +
 				"<td>" + updateButtonGroup + "</td>"
-		);
+		); q
 
 		// Sets the selected value from selection box
 		$('.selectPayment').val(tableRowValues[1]);
@@ -144,13 +144,6 @@ $(document).ready(function(e) {
 		var id = $(row).data('id');
 
 		var getPaymentMethod = $('.selectPayment').val();
-
-		/* TODO
-		 * Add data attribute, to keep in track of old data.
-		 * If user does not make changes, than use old data
-		 * Else use new data, if user make changes.
-		*/
-
 		var buttonGroup = '<div class="btn-group">' +
 									'<div class="btn btn-danger button-delete">' +
 										'<i class="fa fa-trash-o" arian="true"></i>' +

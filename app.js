@@ -24,12 +24,14 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Static files
-app.use(express.static(path.join(__dirname, 'public')));
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// Static files
+app.use('/public', express.static(__dirname + '/public'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 // Setup Sessions
 app.use(session( { secret: 'ilovewdi'}));
@@ -45,6 +47,7 @@ require('./app/controllers/passport')(passport);
 
 //Routes
 require('./routes/routes')(app, passport);
+require('./routes/api/item')(app);
 
 //Port 3000
 server.listen(3000, function(){

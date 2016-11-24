@@ -1,0 +1,23 @@
+{
+  "name": "node-project",
+  "description": "Organize your music library.",
+  "main": "app.js",
+  "authors": [
+    "Akiraff2015 <akiraff@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Akiraff2015/Project-2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "^2.17.0",
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0"
+  }
+}
