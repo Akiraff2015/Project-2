@@ -22,6 +22,6 @@ Most recent changes to **iKeep**
 | ------------------:| :------------------------------------------------- |
 | Name               | Akira Fukushima                                    |
 | Twitter            | [@akiraff](https://twitter.com/akiraff "@akiraff") |
-| LinkedIn           | [profile](https://linkendin.com/in/akiraff)        |
+| LinkedIn           | [Profile](https://www.linkedin.com/in/akiraff)     |
 
 Feel free to contact me on Twitter or LinkendIn, if you got any questions regards iKeep.
